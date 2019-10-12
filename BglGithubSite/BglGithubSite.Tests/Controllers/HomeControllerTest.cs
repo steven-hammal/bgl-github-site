@@ -1,18 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Web.Mvc;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using BglGithubSite;
+﻿using System.Web.Mvc;
 using BglGithubSite.Controllers;
+using Xunit;
+using FluentAssertions;
 
 namespace BglGithubSite.Tests.Controllers
 {
-    [TestClass]
     public class HomeControllerTest
     {
-        [TestMethod]
+        [Fact]
         public void Index()
         {
             // Arrange
@@ -22,10 +17,10 @@ namespace BglGithubSite.Tests.Controllers
             ViewResult result = controller.Index() as ViewResult;
 
             // Assert
-            Assert.IsNotNull(result);
+            result.Should().NotBeNull();
         }
 
-        [TestMethod]
+        [Fact]
         public void About()
         {
             // Arrange
@@ -35,10 +30,11 @@ namespace BglGithubSite.Tests.Controllers
             ViewResult result = controller.About() as ViewResult;
 
             // Assert
-            Assert.AreEqual("Your application description page.", result.ViewBag.Message);
+            string message = result.ViewBag.Message;
+            message.Should().Be("Your application description page.");
         }
 
-        [TestMethod]
+        [Fact]
         public void Contact()
         {
             // Arrange
@@ -48,7 +44,7 @@ namespace BglGithubSite.Tests.Controllers
             ViewResult result = controller.Contact() as ViewResult;
 
             // Assert
-            Assert.IsNotNull(result);
+            result.Should().NotBeNull();
         }
     }
 }
