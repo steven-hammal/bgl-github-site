@@ -121,8 +121,10 @@
     <Compile Include="Models\QueryValidationTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Controllers\HomeControllerTest.cs" />
-    <Compile Include="Services\GithubUserServiceTest.cs" />
-    <Compile Include="Services\ServiceTestsBase.cs" />
+    <Compile Include="Services\RepoService\GithubRepoServiceTest.cs" />
+    <Compile Include="Services\RepoService\RepoServiceTestBase.cs" />
+    <Compile Include="Services\UserService\GithubUserServiceTest.cs" />
+    <Compile Include="Services\UserService\UserServiceTestsBase.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="App.config" />

@@ -10,11 +10,11 @@ using System.Threading.Tasks;
 
 namespace BglGithubSite.Tests.Services
 {
-    public abstract class ServiceTestsBase : IDisposable
+    public abstract class UserServiceTestsBase : IDisposable
     {
         public GithubUserService service;
         bool disposed = false;
-        protected ServiceTestsBase()
+        protected UserServiceTestsBase()
         {
             // Method of mocking HttpClient (which has no interface) from https://gingter.org/2018/07/26/how-to-mock-httpclient-in-your-net-c-unit-tests/
             var handlerMock = new Mock<HttpMessageHandler>(MockBehavior.Strict);

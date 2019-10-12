@@ -5,7 +5,7 @@ using BglGithubSite.Models;
 
 namespace BglGithubSite.Tests.Services
 {
-    public class GithubUserServiceTest : ServiceTestsBase
+    public class GithubUserServiceTest : UserServiceTestsBase
     {
         [Fact]
         public async Task GetGithubUserAsync()

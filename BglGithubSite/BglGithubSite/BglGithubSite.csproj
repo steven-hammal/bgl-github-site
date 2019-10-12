@@ -131,6 +131,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\Contracts\IGithubRepoService.cs" />
     <Compile Include="Services\Contracts\IGithubUserService.cs" />
+    <Compile Include="Services\GithubRepoService.cs" />
     <Compile Include="Services\GithubUserService.cs" />
   </ItemGroup>
   <ItemGroup>
