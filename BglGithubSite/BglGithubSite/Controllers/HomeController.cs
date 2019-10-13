@@ -27,6 +27,7 @@ namespace BglGithubSite.Controllers
         [HttpGet]
         public async Task<ActionResult> Search(Query userQuery)
         {
+            // Field validation using data annotation passes testing but message will not appear in the Index view
             if (ModelState.IsValid)
             {
                 var user = await _githubUserService.GetGithubUser(userQuery);
