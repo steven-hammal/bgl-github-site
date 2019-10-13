@@ -1,45 +1,59 @@
 ﻿@model BglGithubSite.ViewModels.GithubUserViewModel
 
 @{
-    ViewBag.Title = "Search";
+    ViewBag.Title = "Search Results";
 }
 
-<h2>Search Results</h2>
+    <div class="row">
+        <h2>Search Results</h2>
+        @Html.ActionLink("Back to search", "Index", "Home" )
+    </div>
 
-<h3>Github User Details</h3>
-@Html.DisplayFor(model => model.Name)
-@Html.DisplayFor(model => model.Location)
-@Html.DisplayFor(model => model.Avatar_Url)
+<div class="row">
+    <h3>Github User Details</h3>
 
-<h3>Top 5 Repos</h3>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.TopFiveRepos.FirstOrDefault().Name)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.TopFiveRepos.FirstOrDefault().Html_Url)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.TopFiveRepos.FirstOrDefault().Stargazers_Count)
-        </th>
-        <th></th>
-    </tr>
+    <div class="col-md-6">
+        <div>
+            <img alt="List View" src="@Url.Content(@Model.Avatar_Url)">
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div>
+            @Html.LabelFor(model => model.Name)
+            @Html.DisplayFor(model => model.Name)
+        </div>
+        <div>
+            @Html.LabelFor(model => model.Location)
+            @Html.DisplayFor(model => model.Location)
+        </div>
+    </div>
+</div>
 
-    @foreach (var item in Model.TopFiveRepos)
-    {
+<div>
+    <h3>Top 5 Repos</h3>
+    <table class="table">
         <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Html_Url)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Stargazers_Count)
-            </td>
+            <th>
+                Repository Name 
+            </th>
+            <th>
+                Stars
+            </th>
+            <th></th>
         </tr>
-    }
 
-</table>
+        @foreach (var item in Model.TopFiveRepos)
+        {
+            <tr>
+                <td>
+                    <a href="@item.Html_Url" target="_blank">@item.Name</a>
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Stargazers_Count)
+                </td>
+            </tr>
+        }
+    </table>
+</div>
+
 
