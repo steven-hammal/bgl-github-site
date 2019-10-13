@@ -5,19 +5,17 @@
 }
 
     <div class="row">
-        <h2>Search Results</h2>
+        <h1>Search Results</h1>
         @Html.ActionLink("Back to search", "Index", "Home" )
     </div>
 
 <div class="row">
-    <h3>Github User Details</h3>
-
     <div class="col-md-6">
         <div>
-            <img alt="List View" src="@Url.Content(@Model.Avatar_Url)">
+            <img class="center-block" alt="User Avatar" src="@Url.Content(@Model.Avatar_Url)">
         </div>
     </div>
-    <div class="col-md-6">
+    <div class="col-md-6 user-information-display">
         <div>
             @Html.LabelFor(model => model.Name)
             @Html.DisplayFor(model => model.Name)
@@ -26,34 +24,33 @@
             @Html.LabelFor(model => model.Location)
             @Html.DisplayFor(model => model.Location)
         </div>
+        <div>
+            <h3>Top 5 Repos</h3>
+            <table class="table">
+                <tr>
+                    <th>
+                        Repository Name
+                    </th>
+                    <th>
+                        Stars
+                    </th>
+                    <th></th>
+                </tr>
+
+                @foreach (var item in Model.TopFiveRepos)
+                {
+                    <tr>
+                        <td>
+                            <a href="@item.Html_Url" target="_blank">@item.Name</a>
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Stargazers_Count)
+                        </td>
+                    </tr>
+                }
+            </table>
+        </div>
     </div>
-</div>
-
-<div>
-    <h3>Top 5 Repos</h3>
-    <table class="table">
-        <tr>
-            <th>
-                Repository Name 
-            </th>
-            <th>
-                Stars
-            </th>
-            <th></th>
-        </tr>
-
-        @foreach (var item in Model.TopFiveRepos)
-        {
-            <tr>
-                <td>
-                    <a href="@item.Html_Url" target="_blank">@item.Name</a>
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Stargazers_Count)
-                </td>
-            </tr>
-        }
-    </table>
 </div>
 
 
