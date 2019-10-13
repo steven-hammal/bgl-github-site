@@ -1,15 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using System.Web;
+﻿using System.Threading.Tasks;
 using System.Web.Mvc;
 using BglGithubSite.Services.Contracts;
 using BglGithubSite.Models;
+using BglGithubSite.ViewModels;
 
 namespace BglGithubSite.Controllers
 {
-    
+
     public class HomeController : Controller
     {
         private readonly IGithubUserService githubUserService;
@@ -40,14 +37,22 @@ namespace BglGithubSite.Controllers
             return View();
         }
 
+        [HttpGet]
         public async Task<ActionResult> Search(Query userQuery)
         {
-            var user = await githubUserService.GetGithubUser(userQuery);
+            if (ModelState.IsValid)
+            {
+                var user = await githubUserService.GetGithubUser(userQuery);
+                var repos = await githubRepoService.GetGithubRepos(user.Repos_Url);
 
-            if(user == null)
-                return HttpNotFound();
+                if (user == null)
+                    return HttpNotFound();
 
-            return View(user);
+                var searchResult = new GithubUserViewModel(user, repos);
+
+                return View(searchResult);
+            }
+            return RedirectToAction("Index", userQuery);            
         }
     }
 }

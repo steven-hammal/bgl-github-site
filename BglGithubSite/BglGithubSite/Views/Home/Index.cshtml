@@ -11,7 +11,8 @@
         <p>Enter a Github username via the search box to view a summary of their information.</p>
         @using (Html.BeginForm("Search", "Home", FormMethod.Get))
         {
-            @Html.TextBoxFor(m => m.Username)
+            @Html.TextBoxFor(model => model.Username)
+            @Html.ValidationMessageFor(model => model.Username, "", new { @class = "text-danger" })
 
             <input type="submit" value="Search" />
         }
