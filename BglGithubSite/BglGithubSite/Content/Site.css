@@ -26,3 +26,7 @@ textarea {
 .user-information-display {
     font-size: x-large;
 }
+
+.top-buffer {
+    margin-top: 20px
+}

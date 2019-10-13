@@ -9,13 +9,13 @@
         @Html.ActionLink("Back to search", "Index", "Home" )
     </div>
 
-<div class="row">
+<div class="row top-buffer">
     <div class="col-md-6">
-        <div>
+        <div class="top-buffer">
             <img class="center-block" alt="User Avatar" src="@Url.Content(@Model.Avatar_Url)">
         </div>
     </div>
-    <div class="col-md-6 user-information-display">
+    <div class="col-md-6 user-information-display top-buffer">
         <div>
             @Html.LabelFor(model => model.Name)
             @Html.DisplayFor(model => model.Name)
@@ -24,12 +24,11 @@
             @Html.LabelFor(model => model.Location)
             @Html.DisplayFor(model => model.Location)
         </div>
-        <div>
-            <h3>Top 5 Repos</h3>
+        <div class="top-buffer">
             <table class="table">
                 <tr>
                     <th>
-                        Repository Name
+                        Top 5 Repos
                     </th>
                     <th>
                         Stars

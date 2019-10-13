@@ -9,13 +9,14 @@ namespace BglGithubSite.Controllers
 
     public class HomeController : Controller
     {
-        private readonly IGithubUserService githubUserService;
-        private readonly IGithubRepoService githubRepoService;
+        // Next step: Refactor into a single GithubApiService
+        private readonly IGithubUserService _githubUserService;
+        private readonly IGithubRepoService _githubRepoService;
 
         public HomeController(IGithubUserService githubUserService, IGithubRepoService githubRepoService)
         {
-            this.githubUserService = githubUserService;
-            this.githubRepoService = githubRepoService;
+            this._githubUserService = githubUserService;
+            this._githubRepoService = githubRepoService;
         }
 
         public ActionResult Index()
@@ -28,8 +29,8 @@ namespace BglGithubSite.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = await githubUserService.GetGithubUser(userQuery);
-                var repos = await githubRepoService.GetGithubRepos(user.Repos_Url);
+                var user = await _githubUserService.GetGithubUser(userQuery);
+                var repos = await _githubRepoService.GetGithubRepos(user.Repos_Url);
 
                 if (user == null)
                     return HttpNotFound();
