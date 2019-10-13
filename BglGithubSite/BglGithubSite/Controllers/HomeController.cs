@@ -3,10 +3,10 @@ using System.Web.Mvc;
 using BglGithubSite.Services.Contracts;
 using BglGithubSite.Models;
 using BglGithubSite.ViewModels;
+using System;
 
 namespace BglGithubSite.Controllers
 {
-
     public class HomeController : Controller
     {
         // Next step: Refactor into a single GithubApiService
@@ -30,10 +30,11 @@ namespace BglGithubSite.Controllers
             if (ModelState.IsValid)
             {
                 var user = await _githubUserService.GetGithubUser(userQuery);
-                var repos = await _githubRepoService.GetGithubRepos(user.Repos_Url);
 
                 if (user == null)
-                    return HttpNotFound();
+                    return HttpNotFound(); 
+                
+                var repos = await _githubRepoService.GetGithubRepos(user.Repos_Url);
 
                 var searchResult = new GithubUserViewModel(user, repos);
 
