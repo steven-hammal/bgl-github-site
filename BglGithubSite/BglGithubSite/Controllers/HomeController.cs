@@ -40,7 +40,7 @@ namespace BglGithubSite.Controllers
 
                 return View(searchResult);
             }
-            return RedirectToAction("Index", userQuery);            
+            return View("Index", userQuery);            
         }
     }
 }
