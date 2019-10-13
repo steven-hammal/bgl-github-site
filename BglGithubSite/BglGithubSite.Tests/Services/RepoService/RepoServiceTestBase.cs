@@ -17,8 +17,8 @@ namespace BglGithubSite.Tests.Services
         protected RepoServiceTestsBase()
         {
             // Method of mocking HttpClient (which has no interface) from https://gingter.org/2018/07/26/how-to-mock-httpclient-in-your-net-c-unit-tests/
-            var handlerMock = new Mock<HttpMessageHandler>(MockBehavior.Strict);
-            handlerMock.Protected().Setup<Task<HttpResponseMessage>>(
+            var mockHandler = new Mock<HttpMessageHandler>(MockBehavior.Strict);
+            mockHandler.Protected().Setup<Task<HttpResponseMessage>>(
                                       "SendAsync",
                                       ItExpr.IsAny<HttpRequestMessage>(),
                                       ItExpr.IsAny<CancellationToken>()
@@ -28,7 +28,7 @@ namespace BglGithubSite.Tests.Services
                                        Content = new StringContent("[{'name':'Test Repo', 'html_url': 'https://test/test_repo/repo', 'stargazers_count': 1}]"),
                                    }).Verifiable();
 
-            var httpClient = new HttpClient(handlerMock.Object)
+            var httpClient = new HttpClient(mockHandler.Object)
             {
                 BaseAddress = new Uri(ConfigurationManager.AppSettings["githubUsersUrl"]),
             };
